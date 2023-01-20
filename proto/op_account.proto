@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package account;
+
+option go_package = "./protoc";
+
+message OpAccountRequest {
+  int64 user_id = 1;
+  string pay_password = 2;
+  double prices = 3;
+  int64 payment_id = 4;
+  string order_num = 5;
+  int64 type = 6;
+}
+
+message OpAccountResponse {
+  int64 states = 1;
+}
+
+message GetAccountRequest{
+  int64 user_id = 1;
+}
+
+message GetAccountResponse{
+  int64 states = 1;
+  int64 user_id = 2;
+  double balance = 3;
+}
+
+service account {
+  rpc OpAccount (OpAccountRequest) returns (OpAccountResponse);
+  rpc GetAccount (GetAccountRequest) returns (GetAccountResponse);
+}
